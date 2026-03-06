@@ -69,7 +69,7 @@ func pollForResponse(
 
 		session, err := client.GetReplaySession(ctx, sessionID)
 		if err != nil {
-			continue
+			return nil, fmt.Errorf("polling failed: %w", err)
 		}
 
 		if session.ActiveEntry == nil {
@@ -83,7 +83,7 @@ func pollForResponse(
 
 		entry, err := client.GetReplayEntry(ctx, session.ActiveEntry.ID)
 		if err != nil {
-			continue
+			return nil, fmt.Errorf("polling failed: %w", err)
 		}
 
 		if entry.Request != nil && entry.Request.Response != nil {

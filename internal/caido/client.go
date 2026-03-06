@@ -70,7 +70,11 @@ func (c *Client) doRequest(
 	resp interface{},
 ) error {
 	if c.refreshFn != nil {
-		if newToken, err := c.refreshFn(ctx); err == nil && newToken != "" {
+		newToken, err := c.refreshFn(ctx)
+		if err != nil {
+			return err
+		}
+		if newToken != "" {
 			c.tokenMu.Lock()
 			c.token = newToken
 			c.tokenMu.Unlock()
