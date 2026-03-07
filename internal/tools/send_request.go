@@ -31,6 +31,10 @@ type SendRequestInput struct {
 	TLS *bool `json:"tls,omitempty" jsonschema:"Use HTTPS (default true)"`
 	// Replay session ID (creates new if not specified)
 	SessionID string `json:"sessionId,omitempty" jsonschema:"Replay session ID (optional)"`
+	// Response body byte limit (default 2000)
+	BodyLimit int `json:"bodyLimit,omitempty" jsonschema:"Response body byte limit (default 2000)"`
+	// Response body byte offset (default 0)
+	BodyOffset int `json:"bodyOffset,omitempty" jsonschema:"Response body byte offset (default 0)"`
 }
 
 // SendRequestOutput is the output of the send_request tool
@@ -250,6 +254,11 @@ func sendRequestHandler(client *caido.Client) func(context.Context, *mcp.CallToo
 
 		output.EntryID = entry.ID
 
+		bodyLimit := input.BodyLimit
+		if bodyLimit == 0 {
+			bodyLimit = defaultBodyLim
+		}
+
 		// Populate request metadata
 		if entry.Request != nil {
 			output.RequestID = entry.Request.ID
@@ -261,7 +270,7 @@ func sendRequestHandler(client *caido.Client) func(context.Context, *mcp.CallToo
 				output.StatusCode = resp.StatusCode
 				output.RoundtripMs = resp.RoundtripTime
 				output.Response = parseHTTPMessage(
-					resp.Raw, true, true, 0, defaultBodyLim,
+					resp.Raw, true, true, input.BodyOffset, bodyLimit,
 				)
 			}
 		}
@@ -274,6 +283,6 @@ func sendRequestHandler(client *caido.Client) func(context.Context, *mcp.CallToo
 func RegisterSendRequestTool(server *mcp.Server, client *caido.Client) {
 	mcp.AddTool(server, &mcp.Tool{
 		Name:        "caido_send_request",
-		Description: `Send HTTP request and return response inline. Returns statusCode, headers, body (2KB limit). Polls up to 10s for response. On timeout, returns entryId for manual follow-up via get_replay_entry. Params: raw (full request), host, port, tls (default true).`,
+		Description: `Send HTTP request and return response inline. Returns statusCode, headers, body. Polls up to 10s for response. On timeout, returns entryId for manual follow-up via get_replay_entry. Params: raw (full request), host, port, tls (default true), bodyLimit (default 2000), bodyOffset (default 0).`,
 	}, sendRequestHandler(client))
 }
