@@ -14,10 +14,6 @@ github.com/bmatcuk/doublestar/v4 v4.6.1 h1:FH9SifrbvJhnlQpztAx++wlkk70QBf0iBWDwN
 github.com/bmatcuk/doublestar/v4 v4.6.1/go.mod h1:xBQ8jztBU6kakFMg+8WGxn0c6z1fTSPVIjEY1Wr7jzc=
 github.com/bradleyjkemp/cupaloy/v2 v2.6.0 h1:knToPYa2xtfg42U3I6punFEjaGFKWQRXJwj0JTv4mTs=
 github.com/bradleyjkemp/cupaloy/v2 v2.6.0/go.mod h1:bm7JXdkRd4BHJk9HpwqAI8BoAY1lps46Enkdqw6aRX0=
-github.com/caido-community/sdk-go v0.2.1 h1:8V6DD1s6zPli0hhn7mAwnb7K7Oi6rUn039Cr7Tbbhc8=
-github.com/caido-community/sdk-go v0.2.1/go.mod h1:Fy1MXbpU9U0+zagQAB6PG9cxBYlJDehGucgXyvlGsIY=
-github.com/caido-community/sdk-go v0.2.2-0.20260310183151-6a46343345eb h1:640hTMvah1xIrygr1/4hHoRSRXF1RcwlFtLX+e0vKiI=
-github.com/caido-community/sdk-go v0.2.2-0.20260310183151-6a46343345eb/go.mod h1:Fy1MXbpU9U0+zagQAB6PG9cxBYlJDehGucgXyvlGsIY=
 github.com/caido-community/sdk-go v0.2.2 h1:VUc8c888K8+LGT9AAUNGpCfjzEcD3MGj5nit4+TfLXg=
 github.com/caido-community/sdk-go v0.2.2/go.mod h1:Fy1MXbpU9U0+zagQAB6PG9cxBYlJDehGucgXyvlGsIY=
 github.com/cpuguy83/go-md2man/v2 v2.0.6/go.mod h1:oOW0eioCTA6cOiMLiUPZOpcVxMig6NIQQ7OS05n1F4g=
