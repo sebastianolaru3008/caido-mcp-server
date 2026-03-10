@@ -3,7 +3,7 @@ module github.com/c0tton-fluff/caido-mcp-server
 go 1.24.0
 
 require (
-	github.com/caido-community/sdk-go v0.2.1
+	github.com/caido-community/sdk-go v0.2.2
 	github.com/gorilla/websocket v1.5.3
 	github.com/modelcontextprotocol/go-sdk v1.2.0
 	github.com/spf13/cobra v1.10.2
