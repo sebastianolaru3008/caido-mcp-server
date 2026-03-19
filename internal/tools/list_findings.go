@@ -46,7 +46,7 @@ func listFindingsHandler(
 	) (*mcp.CallToolResult, ListFindingsOutput, error) {
 		limit := input.Limit
 		if limit <= 0 {
-			limit = 10
+			limit = 50
 		}
 		if limit > 100 {
 			limit = 100

@@ -42,7 +42,7 @@ func listRequestsHandler(
 	) (*mcp.CallToolResult, ListRequestsOutput, error) {
 		limit := input.Limit
 		if limit <= 0 {
-			limit = 10
+			limit = 20
 		}
 		if limit > 100 {
 			limit = 100

@@ -22,15 +22,15 @@ for platform in "${PLATFORMS[@]}"; do
 
   echo "  ${suffix}"
 
-  # MCP server (root module)
+  # MCP server
+  GOOS="$GOOS" GOARCH="$GOARCH" CGO_ENABLED=0 \
+    go build -C "$ROOT" -ldflags="-s -w -X main.version=${VERSION}" \
+    -o "${DIST}/caido-mcp-server-${suffix}" ./cmd/mcp
+
+  # CLI
   GOOS="$GOOS" GOARCH="$GOARCH" CGO_ENABLED=0 \
     go build -C "$ROOT" -ldflags="-s -w" \
-    -o "${DIST}/caido-mcp-server-${suffix}" .
-
-  # CLI (separate module in Caido-CLI/)
-  GOOS="$GOOS" GOARCH="$GOARCH" CGO_ENABLED=0 \
-    go build -C "${ROOT}/Caido-CLI" -ldflags="-s -w" \
-    -o "${DIST}/caido-cli-${suffix}" .
+    -o "${DIST}/caido-cli-${suffix}" ./cmd/cli
 done
 
 echo ""

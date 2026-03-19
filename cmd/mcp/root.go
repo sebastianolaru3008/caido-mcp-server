@@ -7,7 +7,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-const version = "1.0.0"
+var version = "dev"
 
 var rootCmd = &cobra.Command{
 	Use:     "caido-mcp-server",
