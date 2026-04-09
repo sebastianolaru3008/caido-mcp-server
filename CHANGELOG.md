@@ -2,6 +2,35 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0] - 2026-04-09
+
+### Added
+- **PAT authentication** - set `CAIDO_PAT` env var to skip OAuth device flow entirely (recommended for automation)
+- **14 new MCP tools** (20 -> 34 total):
+  - `caido_run_workflow` - execute active or convert workflows
+  - `caido_toggle_workflow` - enable/disable automation workflows
+  - `caido_list_tamper_rules` - list Match & Replace rule collections
+  - `caido_create_tamper_rule` - create tamper rules with HTTPQL conditions
+  - `caido_toggle_tamper_rule` - enable/disable tamper rules
+  - `caido_delete_tamper_rule` - delete tamper rules
+  - `caido_intercept_status` - get intercept status (PAUSED/RUNNING)
+  - `caido_intercept_control` - pause or resume intercept
+  - `caido_list_intercept_entries` - list queued intercept entries with HTTPQL filtering
+  - `caido_forward_intercept` - forward intercepted request with optional modifications
+  - `caido_drop_intercept` - drop intercepted request
+  - `caido_list_environments` - list environments and variables
+  - `caido_select_environment` - switch active environment
+  - `caido_list_filters` - list saved HTTPQL filter presets
+- Sensitive header redaction (Authorization, Cookie, Set-Cookie, API keys) in all tool output
+- Input length validation on all string parameters
+- Request ID batch cap (max 20 per call)
+- Test coverage for header redaction
+
+### Changed
+- Bumped sdk-go to v0.3.0 (tamper rules SDK, workflow execution, WebSocket fix)
+- Removed WebSocket endpoint workaround (fixed upstream in sdk-go)
+- README rewritten with PAT auth as recommended setup, security section added
+
 ## [1.1.0] - 2026-03-06
 
 ### Added
