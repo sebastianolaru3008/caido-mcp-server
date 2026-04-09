@@ -103,6 +103,8 @@ func runServe(cmd *cobra.Command, args []string) error {
 
 	// Workflows
 	tools.RegisterListWorkflowsTool(server, client)
+	tools.RegisterRunWorkflowTool(server, client)
+	tools.RegisterToggleWorkflowTool(server, client)
 
 	// Environments
 	tools.RegisterListEnvironmentsTool(server, client)
@@ -117,6 +119,12 @@ func runServe(cmd *cobra.Command, args []string) error {
 	tools.RegisterListInterceptEntriesTool(server, client)
 	tools.RegisterForwardInterceptTool(server, client)
 	tools.RegisterDropInterceptTool(server, client)
+
+	// Tamper (Match & Replace)
+	tools.RegisterListTamperRulesTool(server, client)
+	tools.RegisterCreateTamperRuleTool(server, client)
+	tools.RegisterToggleTamperRuleTool(server, client)
+	tools.RegisterDeleteTamperRuleTool(server, client)
 
 	// Filters
 	tools.RegisterListFiltersTool(server, client)

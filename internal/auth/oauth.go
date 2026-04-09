@@ -8,7 +8,6 @@ import (
 	"os"
 	"os/exec"
 	"runtime"
-	"strings"
 	"time"
 
 	caido "github.com/caido-community/sdk-go"
@@ -183,9 +182,7 @@ func (a *Authenticator) startAuthFlow(
 func (a *Authenticator) waitForToken(
 	ctx context.Context, requestID string,
 ) (*StoredToken, error) {
-	wsEndpoint := normalizeAuthWebSocketEndpoint(
-		a.client.WebSocketEndpoint(),
-	)
+	wsEndpoint := a.client.WebSocketEndpoint()
 
 	u, err := url.Parse(wsEndpoint)
 	if err != nil {
@@ -268,14 +265,6 @@ func (a *Authenticator) waitForToken(
 	}
 
 	return a.readTokenFromWS(ctx, conn)
-}
-
-func normalizeAuthWebSocketEndpoint(endpoint string) string {
-	if strings.HasSuffix(endpoint, "/ws") {
-		return endpoint + "/graphql"
-	}
-
-	return endpoint
 }
 
 // readTokenFromWS reads and parses the token from the WS

@@ -37,7 +37,8 @@ Both share the same auth token, the same Go SDK, and the same codebase.
 | **Sitemap** | Browse discovered endpoints |
 | **Scopes** | Create and manage target scope definitions |
 | **Projects** | List and switch between projects |
-| **Workflows** | List automation workflows |
+| **Workflows** | List, run, and toggle automation workflows |
+| **Tamper** | List, create, toggle, and delete Match & Replace rules |
 | **Intercept** | Check status, pause/resume, list/forward/drop intercepted requests |
 | **Environments** | List and switch variable environments (tokens, keys) |
 | **Filters** | List saved HTTPQL filter presets |
@@ -111,7 +112,7 @@ Add to `~/.mcp.json` (Claude Code) or your editor's MCP config:
 "What's in scope?"
 ```
 
-### MCP Tools (28)
+### MCP Tools (34)
 
 | Tool | Description |
 |------|-------------|
@@ -134,6 +135,12 @@ Add to `~/.mcp.json` (Claude Code) or your editor's MCP config:
 | `caido_list_projects` | List projects, marks current |
 | `caido_select_project` | Switch active project |
 | `caido_list_workflows` | List automation workflows |
+| `caido_run_workflow` | Execute an active or convert workflow |
+| `caido_toggle_workflow` | Enable or disable a workflow |
+| `caido_list_tamper_rules` | List Match & Replace rule collections |
+| `caido_create_tamper_rule` | Create a tamper rule in a collection |
+| `caido_toggle_tamper_rule` | Enable or disable a tamper rule |
+| `caido_delete_tamper_rule` | Delete a tamper rule |
 | `caido_get_instance` | Get Caido version and platform info |
 | `caido_intercept_status` | Get intercept status (PAUSED/RUNNING) |
 | `caido_intercept_control` | Pause or resume intercept |
@@ -270,6 +277,48 @@ No parameters required. Returns all environments with variables and selected/glo
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | `id` | string | Environment ID (required, empty string to deselect) |
+
+#### caido_run_workflow
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `id` | string | Workflow ID (required) |
+| `type` | string | `active` or `convert` (required) |
+| `request_id` | string | Request ID (required for active workflows) |
+| `input` | string | Input data (required for convert workflows) |
+
+#### caido_toggle_workflow
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `id` | string | Workflow ID (required) |
+| `enabled` | bool | Enable or disable (required) |
+
+#### caido_list_tamper_rules
+
+No parameters required. Returns all tamper rule collections with nested rules.
+
+#### caido_create_tamper_rule
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `collection_id` | string | Collection ID (required) |
+| `name` | string | Rule name (required) |
+| `condition` | string | HTTPQL filter condition |
+| `sources` | string[] | Traffic sources: INTERCEPT, REPLAY, AUTOMATE, IMPORT, PLUGIN, WORKFLOW, SAMPLE |
+
+#### caido_toggle_tamper_rule
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `id` | string | Tamper rule ID (required) |
+| `enabled` | bool | Enable or disable (required) |
+
+#### caido_delete_tamper_rule
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `id` | string | Tamper rule ID (required) |
 
 </details>
 
