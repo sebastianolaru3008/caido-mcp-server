@@ -25,6 +25,7 @@ func main() {
 
 	rootCmd.AddCommand(sendCmd)
 	rootCmd.AddCommand(rawCmd)
+	rootCmd.AddCommand(batchCmd)
 	rootCmd.AddCommand(historyCmd)
 	rootCmd.AddCommand(requestCmd)
 	rootCmd.AddCommand(encodeCmd)

@@ -94,6 +94,7 @@ func runServe(cmd *cobra.Command, args []string) error {
 
 	// Replay (Send Requests)
 	tools.RegisterSendRequestTool(server, client)
+	tools.RegisterBatchSendTool(server, client)
 	tools.RegisterListReplaySessionsTool(server, client)
 	tools.RegisterGetReplayEntryTool(server, client)
 
